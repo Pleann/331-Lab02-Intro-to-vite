@@ -3,6 +3,10 @@ import { ref } from 'vue'
 // defineProps<{
 // msg: string
 // }>()
+import type { Event } from '@/type'
+defineProps<{
+  event: Event
+}>()
 const event = ref({
   id: 5928101,
   category: 'animal welfare',
