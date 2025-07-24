@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import EventCard from '@/components/EventCard.vue'
+//import EventCard from '@/components/EventCard.vue'
+import CatOrg from '@/components/CatOrg.vue'
 import type { Event } from '@/type'
 import { ref } from 'vue'
 const events = ref<Event[]>([
@@ -40,7 +41,19 @@ const events = ref<Event[]>([
 </script>
 
 <template>
-  <div class="home">
-    <EventCard v-for="event in events" :key="event.id" :event="event"/>
+  <!-- <div class="events">
+    <EventCard v-for="event in events" :key="event.id" :event="event" />
+  </div> -->
+  <div class="events">
+    <CatOrg v-for="event in events" :key="event.id" :event="event" />
   </div>
 </template>
+
+<style scoped>
+.events {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+</style>

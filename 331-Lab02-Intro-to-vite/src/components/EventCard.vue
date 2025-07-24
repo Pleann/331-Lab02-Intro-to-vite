@@ -4,20 +4,9 @@ import { ref } from 'vue'
 // msg: string
 // }>()
 import type { Event } from '@/type'
-defineProps<{
+const props = defineProps<{
   event: Event
 }>()
-const event = ref({
-  id: 5928101,
-  category: 'animal welfare',
-  title: 'Cat Adoption Day',
-  description: 'Find your new feline friend at this event.',
-  location: 'Meow Town',
-  date: 'January 28, 2022',
-  time: '12:00',
-  petsAllowed: true,
-  organizer: 'Kat Laydee',
-})
 </script>
 
 <template>
@@ -36,6 +25,10 @@ const event = ref({
   cursor: pointer;
   border: 1px solid #39495c;
   margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .event-card:hover {
   transform: scale(1.01);
