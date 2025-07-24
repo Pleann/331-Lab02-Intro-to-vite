@@ -4,17 +4,17 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <div id="layout">
-  <header>
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink> |
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
+    <header>
+      <div class="wrapper">
+        <nav>
+          <RouterLink to="/">Home</RouterLink> |
+          <RouterLink to="/about">About</RouterLink>
+        </nav>
+      </div>
+    </header>
 
-  <RouterView />
-</div>
+    <RouterView />
+  </div>
 </template>
 
 <style scoped>
@@ -30,7 +30,7 @@ import { RouterLink, RouterView } from 'vue-router'
 nav {
   padding: 30px;
   font-weight: bold;
-  color: #2c3e50
+  color: #2c3e50;
 }
 
 nav a.router-link-exact-active {
