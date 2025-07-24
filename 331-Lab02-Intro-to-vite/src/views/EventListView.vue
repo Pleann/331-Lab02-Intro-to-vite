@@ -3,13 +3,12 @@
 import CatOrg from '@/components/CatOrg.vue'
 import type { Event } from '@/type'
 import { ref, onMounted } from 'vue'
-import axios from 'axios'
+import EventService from '@/services/EventServices.ts'
 
 const events = ref<Event[] | null>(null)
 
 onMounted(() => {
-  axios
-    .get('https://my-json-server.typicode.com/pleann/331-Lab02-Intro-to-vite-test-server/events')
+  EventService.getEvents()
     .then((response) => {
       events.value = response.data
       console.log(response.data)
@@ -21,8 +20,8 @@ onMounted(() => {
 </script>
 
 <template>
-      <h1>Event for good</h1>
-      <!-- new element -->
+  <h1>Event for good</h1>
+  <!-- new element -->
   <!-- <div class="events">
     <EventCard v-for="event in events" :key="event.id" :event="event" />
   </div> -->
