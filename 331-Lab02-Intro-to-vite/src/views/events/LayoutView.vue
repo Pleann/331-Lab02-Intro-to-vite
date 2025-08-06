@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue'
 import type { Event } from '@/type'
 import EventService from '@/services/EventServices'
+import { useRouter } from 'vue-router'
 
 const event = ref<Event | null>(null)
 const error = ref<string | null>(null)
@@ -12,27 +13,31 @@ const props = defineProps({
     required: true,
   },
 })
+const router = useRouter()
 
 onMounted(() => {
   EventService.getEvent(parseInt(props.id))
     .then((response) => {
       event.value = response.data
     })
-    .catch((error) => {
-      console.error('There was an error!', error)
+    .catch(() => {
+        router.push({
+            name: '404-resource-view',
+            params: { resource: 'event' }
+        })
     })
 })
-onMounted(() => {
-  EventService.getEvent(parseInt(props.id))
-    .then((response) => {
-      event.value = response.data
-    })
-    .catch((err) => {
-      // Set the error message here
-      error.value = `Failed to fetch event with ID ${props.id}. Error: ${err.message}`
-      console.error(error.value)
-    })
-})
+// onMounted(() => {
+//   EventService.getEvent(parseInt(props.id))
+//     .then((response) => {
+//       event.value = response.data
+//     })
+//     .catch((err) => {
+//       // Set the error message here
+//       error.value = `Failed to fetch event with ID ${props.id}. Error: ${err.message}`
+//       console.error(error.value)
+//     })
+// })
 </script>
 
 <template>
