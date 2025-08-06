@@ -15,7 +15,9 @@ const store = useMessageStore()
 const register = () => {
   router.push({ name: 'event-detail-view' })
   store.updateMessage('You are successfully registered for ' + props.event.title)
-  setTimeout(() => {store.resetMessage()}, 3000)
+  setTimeout(() => {
+    store.resetMessage()
+  }, 3000)
   router.push({ name: 'event-detail-view', params: { id: props.event.id } })
 }
 </script>

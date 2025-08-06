@@ -2,6 +2,7 @@
 //import EventCard from '@/components/EventCard.vue'
 import CatOrg from '@/components/CatOrg.vue'
 import type { Event } from '@/type'
+import nProgress from 'nprogress'
 import { ref, onMounted, computed, watchEffect } from 'vue'
 import EventService from '@/services/EventServices.ts'
 
@@ -22,13 +23,24 @@ const perPage = computed(() => Number(route.query.perPage) || 2)
 onMounted(() => {
   watchEffect(() => {
     events.value = null
+    nProgress.start()
     EventService.getEvents(perPage.value, page.value)
       .then((response) => {
         events.value = response.data
         totalEvents.value = response.headers['x-total-count']
       })
       .catch((error) => {
-        console.error('There was an error!', error)
+        if (error.response && error.response.status === 404) {
+          router.push({
+            name: '404-resource-view',
+            params: { resource: 'event' },
+          })
+        } else {
+          router.push({ name: 'network-error-view' })
+        }
+      })
+      .finally(() => {
+        nProgress.done()
       })
   })
 })
