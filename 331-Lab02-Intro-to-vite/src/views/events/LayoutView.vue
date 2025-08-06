@@ -1,36 +1,10 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import type { Event } from '@/type'
-import EventService from '@/services/EventServices'
-import { useRouter } from 'vue-router'
+import { useEventStore } from '@/stores/event'
+import { storeToRefs } from 'pinia'
 
-const event = ref<Event | null>(null)
-const error = ref<string | null>(null)
+const store = useEventStore()
+const { event } = storeToRefs(store)
 
-const props = defineProps({
-  id: {
-    type: String,
-    required: true,
-  },
-})
-const router = useRouter()
-
-onMounted(() => {
-  EventService.getEvent(parseInt(props.id))
-    .then((response) => {
-      event.value = response.data
-    })
-    .catch((error) => {
-      if (error.response && error.response.status === 404) {
-        router.push({
-          name: '404-resource-view',
-          params: { resource: 'event' },
-        })
-      } else {
-        router.push({ name: 'network-error-view' })
-      }
-    })
-})
 // onMounted(() => {
 //   EventService.getEvent(parseInt(props.id))
 //     .then((response) => {
@@ -56,7 +30,7 @@ onMounted(() => {
     </nav>
     <RouterView :event="event" />
   </div>
-  <div v-else-if="error">
+  <!-- <div v-else-if="error">
     <p class="error-message">{{ error }}</p>
-  </div>
+  </div> -->
 </template>
