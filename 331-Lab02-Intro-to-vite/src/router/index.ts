@@ -5,6 +5,7 @@ import StudentView from '@/views/StudentView.vue'
 import EventDetailsView from '@/views/events/DetailView.vue'
 import EventRegisterView from '@/views/events/RegisterView.vue'
 import EventEditView from '@/views/events/EditView.vue'
+import EventLayoutView from '@/views/events/LayoutView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,22 +17,30 @@ const router = createRouter({
       props: (route) => ({ page: parseInt(route.query.page?.toString() || '1') }),
     },
     {
-      path: '/event/5928101',
-      name: 'event-detail-view',
-      component: EventDetailsView,
+      path: '/event/:id',
+      name: 'event-layout-view',
+      component: EventLayoutView,
       props: true,
-    },
-    {
-      path: '/event/:id/register',
-      name: 'event-register-view',
-      component: EventRegisterView,
-      props: true,
-    },
-    {
-      path: '/event/:id/edit',
-      name: 'event-edit-view',
-      component: EventEditView,
-      props: true,
+      children: [
+        {
+          path: '',
+          name: 'event-detail-view',
+          component: EventDetailsView,
+          props: true,
+        },
+        {
+          path: 'register',
+          name: 'event-register-view',
+          component: EventRegisterView,
+          props: true,
+        },
+        {
+          path: 'edit',
+          name: 'event-edit-view',
+          component: EventEditView,
+          props: true,
+        },
+      ],
     },
     {
       path: '/about',
