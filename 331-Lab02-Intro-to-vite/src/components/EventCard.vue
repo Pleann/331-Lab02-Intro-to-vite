@@ -18,7 +18,7 @@ defineProps<{
 </template>
 
 <style scoped>
-.event-card {
+/* .event-card {
   padding: 20px;
   width: 250px;
   cursor: pointer;
@@ -36,5 +36,5 @@ defineProps<{
 .event-link {
   text-decoration: none;
   color: #2c3e50;
-}
+} */
 </style>

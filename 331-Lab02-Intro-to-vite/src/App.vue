@@ -39,7 +39,7 @@ const { message } = storeToRefs(store)
   color: #2c3e50;
   padding-left: 475px;
 } */
-
+/* 
 nav {
   padding: 30px;
   font-weight: bold;
@@ -63,5 +63,5 @@ h2 {
 }
 #flashMessage {
   animation: yellofade 3s ease-in-out;
-}
+} */
 </style>

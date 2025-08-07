@@ -46,7 +46,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <h1>Event for good</h1>
+  <h1 class="text-3xl font-bold mb-6 text-center">Event for good</h1>
   <!-- new element -->
   <!-- <div class="events">
     <EventCard v-for="event in events" :key="event.id" :event="event" />
@@ -55,18 +55,18 @@ onMounted(() => {
     <CatOrg v-for="event in events" :key="event.id" :event="event" />
     <div class="pagination">
       <RouterLink
-        id="page-prev"
         :to="{ name: 'event-list-view', query: { page: page - 1, perPage: perPage } }"
         rel="prev"
         v-if="page != 1"
+        class="text-black-600 font-bold space-x-1 hover:underline text-left w-1/2"
         >&#60; Prev Page</RouterLink
       >
 
       <RouterLink
-        id="page-next"
         :to="{ name: 'event-list-view', query: { page: page + 1, perPage: perPage } }"
         rel="next"
         v-if="hasNexPage"
+        class="text-black-600 font-bold space-x-1 hover:underline text-right w-1/2"
         >Next Page &#62;</RouterLink
       >
     </div>
@@ -74,7 +74,7 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.pagination {
+/* .pagination {
   display: flex;
 }
 
@@ -90,5 +90,5 @@ onMounted(() => {
 
 #page-next {
   text-align: right;
-}
+} */
 </style>
