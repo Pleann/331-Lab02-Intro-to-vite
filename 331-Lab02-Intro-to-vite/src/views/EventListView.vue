@@ -22,7 +22,6 @@ const perPage = computed(() => Number(route.query.perPage) || 2)
 
 onMounted(() => {
   watchEffect(() => {
-    events.value = null
     nProgress.start()
     EventService.getEvents(perPage.value, page.value)
       .then((response) => {
