@@ -76,7 +76,6 @@ onMounted(() => {
 <style scoped>
 .pagination {
   display: flex;
-  width: 290px;
 }
 
 .pagination a {
