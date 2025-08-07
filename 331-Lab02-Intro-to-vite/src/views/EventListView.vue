@@ -9,7 +9,7 @@ import EventService from '@/services/EventServices.ts'
 const events = ref<Event[] | null>(null)
 const totalEvents = ref(0)
 const hasNexPage = computed(() => {
-  const totalPages = Math.ceil(totalEvents.value / 2)
+  const totalPages = Math.ceil(totalEvents.value / perPage.value)
   return page.value < totalPages
 })
 import { useRoute, useRouter } from 'vue-router'
@@ -51,7 +51,7 @@ onMounted(() => {
   <!-- <div class="events">
     <EventCard v-for="event in events" :key="event.id" :event="event" />
   </div> -->
-  <div class="events">
+  <div class="flex flex-col items-center">
     <CatOrg v-for="event in events" :key="event.id" :event="event" />
     <div class="pagination">
       <RouterLink
@@ -74,12 +74,6 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.events {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
 .pagination {
   display: flex;
   width: 290px;
